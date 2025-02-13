@@ -11,7 +11,7 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters, C
 CHANNEL_ID = "@bio69mu"  # Замените на username или ID вашего канала
 TEMPLATE_FILE = "template.html"  # Файл шаблона сайта
 BASE_URL = "bio.69.mu"  # Базовый URL для сайтов
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")  # Токен GitHub из переменных окружения
+GITHUB_TOKEN = os.getenv("GIT_TOKEN")  # Токен GitHub из переменных окружения
 REPO_NAME = "ваш_username/ваш_репозиторий"  # Например, "username/repo"
 
 # Подключение к GitHub
