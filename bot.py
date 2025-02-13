@@ -12,7 +12,7 @@ CHANNEL_ID = "@bio69mu"  # Замените на username или ID вашего
 TEMPLATE_FILE = "template.html"  # Файл шаблона сайта
 BASE_URL = "bio.69.mu"  # Базовый URL для сайтов
 GITHUB_TOKEN = os.getenv("GIT_TOKEN")  # Токен GitHub из переменных окружения
-REPO_NAME = "ваш_username/ваш_репозиторий"  # Например, "username/repo"
+REPO_NAME = "sqpbcaievifvo/sqpbcaievifvo.github.io"  # Например, "username/repo"
 
 # Подключение к GitHub
 g = Github(GITHUB_TOKEN)
@@ -203,7 +203,7 @@ async def delete_site(update: Update, context: CallbackContext):
 
 # Запуск бота
 async def main():
-    application = Application.builder().token("7913843319:AAG4RmLARW5tnW8ArPdWpq-sz8c7UIVdTI8").build()
+    application = Application.builder().token("7913843319:AAG0aN1X79IvitrvZHdI9ukfNowJE9Pyb58").build()
 
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("edit", edit_site))
