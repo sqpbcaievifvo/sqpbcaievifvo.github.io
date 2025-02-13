@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TG - @bio69mu</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Затемнение */
+            z-index: -1;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .avatar {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 15px;
+            border: 2px solid #808080;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .bio {
+            margin: 15px 0;
+            font-size: 16px;
+            color: #ccc;
+        }
+
+        .links {
+            margin: 20px 0;
+        }
+
+        .telegram-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1); /* Эффект стекла */
+            backdrop-filter: blur(10px); /* Эффект стекла */
+            border: none;
+            cursor: pointer;
+            width: 250px;
+            height: 60px;
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        
+
+        footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #555;
+        }
+
+        /* Всплывающее окно с эффектом стекла */
+        .popup {
+            position: fixed;
+            left: 50%;
+            bottom: 10px;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.1); /* Такой же фон как у контейнера */
+            backdrop-filter: blur(10px); /* Эффект стекла */
+            color: #fff;
+            padding: 5px 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            width: auto;
+            max-width: 200px;
+            min-width: 200px;
+            height: 30px; /* Высота уменьшена до 30px */
+            display: none;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            word-wrap: break-word;
+            overflow: hidden;
+            flex-direction: column;
+            animation: popupAnimation 1s ease-out forwards;
+        }
+
+        @keyframes popupAnimation {
+            0% {
+                transform: translateX(-50%) translateY(50%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Видео на заднем плане */
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        @keyframes popupHide {
+            0% {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-50%) translateY(50%);
+                opacity: 0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+   <!-- Видео на заднем фоне -->
+    <video autoplay muted loop id="background-video">
+        <source src="background.mp4" type="video/mp4">
+        Ваш браузер не поддерживает HTML5-видео.
+    </video>
+    
+    <div class="container">
+        <div class="profile-card">
+            <img src="photo.jpg" alt="Avatar" class="avatar">
+            <h1 id="title">ТЕСТ</h1>
+            <p id="description" class="bio">дададааддавд нужную опцию ниже:</p>
+            <div class="links">
+                <button id="button1" class="telegram-button" onclick="showPopup(event, 'Пересылаю...', 'https://t.me/doxcrimes');">Открвдвддвдыть личку</button>
+                <button id="button2" class="telegram-button" onclick="showPopup(event, 'Пересылаю...', 'https://t.me/SysCrackers');">Канал SysCrжжажажкжкackers</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="popup" class="popup">
+        <p id="popup-text"></p>
+    </div>
+
+    <script>
+            // Загрузка данных из файла data.txt
+fetch('data.txt')
+    .then(response => response.text())
+    .then(data => {
+        const lines = data.split('\n');
+        
+        // Обновляем заголовок и описание
+        document.getElementById('title').textContent = lines[0]; // Заголовок
+        document.getElementById('description').textContent = lines[1]; // Описание
+
+        // Обновляем первую кнопку
+        const button1 = document.getElementById('button1');
+        button1.textContent = lines[2]; // Текст кнопки 1
+        button1.setAttribute('onclick', `showPopup(event, 'Пересылаю...', '${lines[3].trim()}');`); // Ссылка кнопки 1
+
+        // Обновляем вторую кнопку
+        const button2 = document.getElementById('button2');
+        button2.textContent = lines[4]; // Текст кнопки 2
+        button2.setAttribute('onclick', `showPopup(event, 'Пересылаю...', '${lines[5].trim()}');`); // Ссылка кнопки 2
+    })
+    .catch(error => console.error('Ошибка загрузки данных:', error));
+
+// Функция для отображения всплывающего окна
+function showPopup(event, message, link) {
+    event.preventDefault(); // Отменяем стандартное поведение
+    alert(message); // Показываем сообщение
+    window.open(link, "_blank"); // Открываем ссылку в новой вкладке
+}
+
+var isPopupVisible = false;
+
+
+        function showPopup(event, message, link) {
+            event.preventDefault();
+
+            var popup = document.getElementById("popup");
+
+            if (isPopupVisible) {
+                popup.style.animation = "popupHide 1s ease-out forwards";
+                setTimeout(function() {
+                    popup.style.display = "none";
+                    isPopupVisible = false;
+                    setTimeout(function() {
+                        showPopup(event, message, link);
+                    }, 1000);
+                }, 1000);
+            } else {
+                document.getElementById("popup-text").textContent = message;
+                popup.style.display = "flex";
+                popup.style.animation = "popupAnimation 1s ease-out forwards";
+
+                setTimeout(function() {
+                    popup.style.animation = "popupHide 1s ease-out forwards";
+                    setTimeout(function() {
+                        popup.style.display = "none";
+                        isPopupVisible = false;
+                        window.open(link, "_blank");
+                    }, 1000);
+                }, 1600);
+
+                isPopupVisible = true;
+            }
+        }
+    </script>
+</body>
+</html>
